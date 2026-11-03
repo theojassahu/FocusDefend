@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 interface NavbarProps {
@@ -8,6 +9,13 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenGetStarted }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,10 +41,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenGetStarted }) => {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-brand-midnight/85 backdrop-blur-md border-b border-white/10 shadow-lg py-3'
+          ? 'bg-brand-midnight/90 backdrop-blur-md border-b border-white/10 shadow-lg py-3'
           : 'bg-transparent py-5'
       }`}
     >
+      {/* Scroll-based Progress Indicator using useScroll & useSpring */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-brand-green via-emerald-300 to-brand-mint origin-left"
+        style={{ scaleX }}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Brand Logo & Wordmark */}
@@ -121,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenGetStarted }) => {
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 text-sm font-medium text-brand-muted hover:text-brand-green hover:bg-white/5 rounded-lg transition-colors"
+                className="px-3 py-2 text-sm font-medium text-brand-muted hover:text-white hover:bg-brand-surface/60 rounded-lg transition-colors"
               >
                 {link.label}
               </a>
@@ -133,9 +147,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenGetStarted }) => {
                 setMobileMenuOpen(false);
                 onOpenGetStarted();
               }}
-              className="w-full py-3 rounded-btn bg-brand-green text-brand-midnight font-bold text-sm flex items-center justify-center gap-2 shadow-glow-sm cursor-pointer"
+              className="w-full py-2.5 rounded-btn bg-brand-green hover:bg-brand-emerald text-brand-midnight font-bold text-xs tracking-wide transition-colors flex items-center justify-center gap-2 shadow-glow-sm"
             >
-              <span>Explore FocusDefend</span>
+              <span>Get Started</span>
               <ArrowUpRight className="w-4 h-4" />
             </button>
           </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { SectionHeading } from '../components/SectionHeading';
 import { 
   ShieldCheck, 
@@ -8,7 +9,8 @@ import {
   Users, 
   BrainCircuit, 
   CheckCircle2, 
-  Sparkles
+  Sparkles,
+  ArrowRight
 } from 'lucide-react';
 
 export const SolutionSection: React.FC = () => {
@@ -49,82 +51,61 @@ export const SolutionSection: React.FC = () => {
     <section
       id="solution"
       aria-label="Introducing FocusDefend"
-      className="py-24 md:py-32 relative bg-brand-deep/60 border-t border-white/5"
+      className="py-24 md:py-32 relative bg-brand-deep/60 border-t border-white/5 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background illumination */}
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-brand-green/10 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           eyebrow="A BETTER APPROACH"
           title="Don't just block screen time. Make it meaningful."
           description="FocusDefend bridges the divide between parental oversight and student autonomy by transforming everyday friction into constructive learning milestones."
         />
 
-        {/* Central Core Architecture Visual Showcase */}
-        <div className="mb-20 glass-panel rounded-card p-8 md:p-12 border border-white/10 relative overflow-hidden">
-          <div className="grid lg:grid-cols-12 gap-8 items-center">
-            
-            {/* High-Impact Product Visual Showcase with Genuine Brand Emblem */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="w-full max-w-sm rounded-[32px] bg-brand-surface/90 p-6 border border-white/15 shadow-2xl relative overflow-hidden flex flex-col items-center text-center">
-                
-                {/* Glow backdrop */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full blur-3xl bg-brand-green/20 pointer-events-none" />
+        {/* Cinematic Transformation Storytelling: Image 3 (Turn Distraction into Discipline) */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-16 glass-panel rounded-card overflow-hidden border border-brand-green/30 shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative"
+        >
+          {/* Subtle emerald glow wrapper */}
+          <div className="absolute -top-32 -left-32 w-80 h-80 rounded-full bg-brand-green/20 blur-3xl pointer-events-none" />
 
-                {/* Authentic FocusDefend Emblem */}
-                <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-3xl bg-brand-midnight/90 border border-brand-green/40 p-4 shadow-glow-md relative mb-5 transition-transform hover:scale-105 duration-300">
-                  <img
-                    src="/assets/logo/focusdefend-logo.png"
-                    alt="FocusDefend Shield & Learning Book Emblem"
-                    className="w-full h-full object-contain"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/logo.jpg';
-                    }}
-                  />
+          <div className="grid lg:grid-cols-12 gap-8 items-center p-6 sm:p-8 lg:p-10">
+            {/* Left 7 Columns: Independent 16:9 Responsive Image Container */}
+            <div className="lg:col-span-7">
+              <div className="relative rounded-2xl overflow-hidden aspect-video bg-brand-midnight border border-white/10 shadow-2xl group">
+                <img
+                  src="/assets/cinematic/image-3-turn-distraction-discipline.jpg"
+                  alt="FocusDefend Positive Transformation — Student studying with locked apps arc and disciplined learning mindset"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+
+                {/* Discrete Story Pill */}
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-midnight/85 border border-brand-green/40 text-[11px] font-mono text-brand-green backdrop-blur-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse" />
+                  <span>The Transformation Phase</span>
                 </div>
-
-                <div className="space-y-1.5 relative z-10">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-brand-green bg-brand-green/10 px-2.5 py-1 rounded-full border border-brand-green/30">
-                    LEARN → EARN → UNLOCK
-                  </span>
-                  <h4 className="text-lg font-bold text-white pt-1">
-                    The Habit Transformation Engine
-                  </h4>
-                  <p className="text-xs text-brand-muted max-w-xs leading-relaxed">
-                    Turns everyday app resistance into structured curriculum learning and earned screen-time rewards.
-                  </p>
-                </div>
-
-                {/* Workflow summary pill */}
-                <div className="mt-5 w-full grid grid-cols-3 gap-2 pt-4 border-t border-white/10 text-center font-mono text-[10px]">
-                  <div className="p-2 rounded-lg bg-brand-deep border border-white/5">
-                    <span className="text-brand-darkMuted block">1. LEARN</span>
-                    <span className="text-white font-semibold">NCERT Topics</span>
-                  </div>
-                  <div className="p-2 rounded-lg bg-brand-deep border border-white/5">
-                    <span className="text-brand-darkMuted block">2. EARN</span>
-                    <span className="text-brand-green font-semibold">Focus Credits</span>
-                  </div>
-                  <div className="p-2 rounded-lg bg-brand-deep border border-white/5">
-                    <span className="text-brand-darkMuted block">3. UNLOCK</span>
-                    <span className="text-brand-mint font-semibold">Screen Time</span>
-                  </div>
-                </div>
-
               </div>
             </div>
 
-            {/* Right Narrative Explanation */}
-            <div className="lg:col-span-7 space-y-6">
+            {/* Right 5 Columns: Narrative Transformation Walkthrough */}
+            <div className="lg:col-span-5 space-y-5 text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-green/10 text-brand-green text-xs font-mono border border-brand-green/20">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>The Habit Loop</span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight">
                 Turning App Resistance Into Academic Curiosity
               </h3>
 
-              <p className="text-brand-muted leading-relaxed">
-                When students attempt to open distracting apps during designated revision hours, FocusDefend intercepts the launch. Instead of a dead-end blocker, it offers an immediate, bite-sized curriculum opportunity.
+              <p className="text-sm text-brand-muted leading-relaxed">
+                When students attempt to open recreational apps during designated study blocks, FocusDefend intercepts the launch. Instead of a dead-end blocker, it offers an immediate, bite-sized curriculum opportunity.
               </p>
 
               <div className="space-y-3 pt-2">
@@ -132,8 +113,8 @@ export const SolutionSection: React.FC = () => {
                   <div className="w-5 h-5 rounded-full bg-brand-green/20 text-brand-green flex items-center justify-center shrink-0 mt-0.5">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   </div>
-                  <p className="text-sm text-brand-muted">
-                    <strong className="text-white">Active Participation:</strong> Students feel in control of their earned time rather than restricted by force.
+                  <p className="text-xs sm:text-sm text-brand-muted">
+                    <strong className="text-white">Active Participation:</strong> Students earn their recreational privileges through proven effort.
                   </p>
                 </div>
 
@@ -141,8 +122,8 @@ export const SolutionSection: React.FC = () => {
                   <div className="w-5 h-5 rounded-full bg-brand-green/20 text-brand-green flex items-center justify-center shrink-0 mt-0.5">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   </div>
-                  <p className="text-sm text-brand-muted">
-                    <strong className="text-white">Continuous Revision:</strong> Bite-sized quizzes reinforce school concepts throughout the day.
+                  <p className="text-xs sm:text-sm text-brand-muted">
+                    <strong className="text-white">Continuous Revision:</strong> Bite-sized quizzes reinforce NCERT concepts throughout the day.
                   </p>
                 </div>
 
@@ -150,21 +131,34 @@ export const SolutionSection: React.FC = () => {
                   <div className="w-5 h-5 rounded-full bg-brand-green/20 text-brand-green flex items-center justify-center shrink-0 mt-0.5">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   </div>
-                  <p className="text-sm text-brand-muted">
-                    <strong className="text-white">Equitable Balance:</strong> Recreational screen time is rewarded after genuine academic effort.
+                  <p className="text-xs sm:text-sm text-brand-muted">
+                    <strong className="text-white">Equitable Balance:</strong> Screen time is enjoyed with peace of mind after goals are achieved.
                   </p>
                 </div>
               </div>
+
+              <div className="pt-2">
+                <a
+                  href="#how-it-works"
+                  className="inline-flex items-center gap-2 text-xs font-mono font-bold text-brand-green hover:text-brand-mint transition-colors"
+                >
+                  <span>Explore Learn-Earn-Unlock Mechanism</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
-
           </div>
-        </div>
+        </motion.div>
 
-        {/* 6 Key Pillars Grid */}
+        {/* 6 Key Pillars Grid with Staggered Motion */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {pillars.map((pillar) => (
-            <div
+          {pillars.map((pillar, idx) => (
+            <motion.div
               key={pillar.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="glass-panel glass-panel-hover rounded-card p-6 flex flex-col justify-between"
             >
               <div>
@@ -178,7 +172,7 @@ export const SolutionSection: React.FC = () => {
                   {pillar.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

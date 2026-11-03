@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, BookOpen, Award, Smartphone } from 'lucide-react';
+import { 
+  FloatingShield, 
+  FloatingLockedApps, 
+  FloatingProgress, 
+  FloatingCreditsCard,
+  FloatingSessionStatus
+} from './FloatingElements';
 
 interface HeroProps {
   onExplore: () => void;
@@ -62,54 +70,148 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
 
   const current = narrativeFrames[activeFrame];
 
+  // Framer Motion Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.2,
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
+  const logoVariants = {
+    hidden: { opacity: 0, scale: 0.85 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.9,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
   return (
     <section
       id="hero"
       aria-label="Hero Section"
-      className="relative min-h-[100dvh] pt-28 pb-16 md:pt-36 md:pb-24 flex flex-col justify-between overflow-hidden"
+      className="relative min-h-[100dvh] pt-28 pb-16 md:pt-36 md:pb-24 flex flex-col justify-between overflow-hidden bg-brand-midnight"
     >
-      {/* Background illumination & grid effect */}
-      <div className="absolute inset-0 radial-glow-hero pointer-events-none" />
-      <div 
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full blur-[140px] pointer-events-none opacity-20 bg-brand-green/20"
-        aria-hidden="true"
-      />
-      <div 
-        className="absolute -top-32 right-10 w-[450px] h-[450px] rounded-full blur-[120px] pointer-events-none opacity-15 bg-emerald-500/15"
-        aria-hidden="true"
-      />
+      {/* 1. Cinematic Full-Width Background Visual (Image 1: Student Studying with Green Shield) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Slow background zoom from 1.05 to 1.0 with smooth opacity reveal */}
+        <motion.div
+          initial={{ scale: 1.05, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.55 }}
+          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full h-full relative"
+        >
+          <img
+            src="/assets/cinematic/image-1-hero-study-shield.jpg"
+            alt="FocusDefend Cinematic Hero — Student studying under protective green shield"
+            className="w-full h-full object-cover object-[70%_center] lg:object-center"
+          />
+        </motion.div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
+        {/* Sophisticated Dark Gradient Vignette for pristine text readability without obscuring the art */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-midnight via-brand-midnight/90 to-brand-midnight/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-midnight via-transparent to-brand-midnight/70" />
+        
+        {/* Subtle Emerald Radial Illumination */}
+        <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[700px] h-[700px] rounded-full blur-[140px] pointer-events-none opacity-25 bg-brand-green/20" />
+        <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] rounded-full blur-[130px] pointer-events-none opacity-20 bg-emerald-400/15" />
+      </div>
+
+      {/* Floating Decorative Elements Inspired by Imagery (Pointer-events-none, non-obtrusive) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10 hidden xl:block">
+        <FloatingShield className="absolute top-36 right-[38%]" />
+        <FloatingLockedApps className="absolute bottom-32 right-12" />
+        <FloatingProgress className="absolute top-44 left-10" />
+        <FloatingCreditsCard className="absolute bottom-28 left-[45%]" />
+        <FloatingSessionStatus className="absolute top-28 right-16" />
+      </div>
+
+      {/* Main Content Container */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Mission & Core Value Proposition */}
-          <div className="lg:col-span-7 space-y-6 text-left">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="lg:col-span-7 space-y-6 text-left"
+          >
             {/* System Philosophy Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-brand-surface border border-white/10 text-xs font-mono tracking-widest uppercase text-brand-mint shadow-surface-inner">
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-brand-surface/90 border border-brand-green/30 text-xs font-mono tracking-widest uppercase text-brand-mint shadow-surface-inner backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse" />
               <span>LEARN → EARN → UNLOCK</span>
-            </div>
+            </motion.div>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.05]">
+            {/* Logo Fade & Scale Entrance */}
+            <motion.div variants={logoVariants} className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-brand-surface border border-brand-green/40 p-1.5 flex items-center justify-center shadow-glow-sm">
+                <img
+                  src="/assets/logo/focusdefend-logo.png"
+                  alt="FocusDefend Shield & Learning Book Emblem"
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/logo.jpg';
+                  }}
+                />
+              </div>
+              <span className="font-extrabold text-xl tracking-tight text-white font-sans">
+                FocusDefend
+              </span>
+              <span className="text-[11px] font-mono uppercase text-brand-green bg-brand-green/10 px-2 py-0.5 rounded border border-brand-green/20">
+                Digital Wellbeing
+              </span>
+            </motion.div>
+
+            {/* Staggered Main Headline */}
+            <motion.h1 
+              variants={itemVariants} 
+              className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.05]"
+            >
               YOUR FOCUS.<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-green via-emerald-300 to-white">
                 YOUR FUTURE.
               </span>
-            </h1>
+            </motion.h1>
 
-            {/* Supporting Headline */}
-            <p className="text-xl sm:text-2xl font-semibold text-white/90 leading-snug">
+            {/* Supporting Headline Slide-up */}
+            <motion.p 
+              variants={itemVariants} 
+              className="text-xl sm:text-2xl font-semibold text-white/90 leading-snug"
+            >
               Technology should help students grow, not distract them from their potential.
-            </p>
+            </motion.p>
 
-            {/* Supporting Description */}
-            <p className="text-base sm:text-lg text-brand-muted leading-relaxed max-w-xl">
+            {/* Supporting Description Slide-up */}
+            <motion.p 
+              variants={itemVariants} 
+              className="text-base sm:text-lg text-brand-muted leading-relaxed max-w-xl"
+            >
               FocusDefend transforms digital habits through intelligent app restrictions, learning-based rewards, and AI-powered digital wellbeing.
-            </p>
+            </motion.p>
 
-            {/* Call To Actions */}
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            {/* CTA Buttons with slight stagger */}
+            <motion.div variants={itemVariants} className="pt-2 flex flex-wrap items-center gap-4">
               <button
                 onClick={onExplore}
                 className="px-7 py-4 rounded-btn bg-brand-green hover:bg-brand-emerald text-brand-midnight font-extrabold text-sm sm:text-base tracking-wide transition-all duration-200 shadow-glow-sm hover:shadow-glow-md hover:scale-[1.02] active:scale-[0.98] inline-flex items-center gap-2.5 cursor-pointer"
@@ -120,14 +222,14 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
 
               <a
                 href="#how-it-works"
-                className="px-6 py-4 rounded-btn bg-brand-surface hover:bg-brand-surfaceHover text-white font-semibold text-sm sm:text-base border border-white/10 transition-all duration-200 inline-flex items-center gap-2 hover:border-brand-green/30"
+                className="px-6 py-4 rounded-btn bg-brand-surface/90 hover:bg-brand-surfaceHover text-white font-semibold text-sm sm:text-base border border-white/10 transition-all duration-200 inline-flex items-center gap-2 hover:border-brand-green/30 backdrop-blur-md"
               >
                 <span>Discover How It Works</span>
               </a>
-            </div>
+            </motion.div>
 
             {/* Value Trust Points */}
-            <div className="pt-6 grid grid-cols-3 gap-3 border-t border-white/10 max-w-lg">
+            <motion.div variants={itemVariants} className="pt-6 grid grid-cols-3 gap-3 border-t border-white/10 max-w-lg">
               <div>
                 <p className="text-xs text-brand-darkMuted font-mono uppercase">Architecture</p>
                 <p className="text-sm font-bold text-white mt-0.5">Native Android</p>
@@ -140,12 +242,17 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                 <p className="text-xs text-brand-darkMuted font-mono uppercase">Data Privacy</p>
                 <p className="text-sm font-bold text-brand-green mt-0.5">On-Device Local</p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Column: Cinematic 3-Frame Narrative Interactive Card */}
-          <div className="lg:col-span-5">
-            <div className="relative glass-panel rounded-card p-6 sm:p-8 border border-white/15 shadow-2xl overflow-hidden">
+          <motion.div 
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5"
+          >
+            <div className="relative glass-panel rounded-card p-6 sm:p-8 border border-white/15 shadow-2xl overflow-hidden backdrop-blur-xl">
               {/* Subtle card glow overlay */}
               <div 
                 className="absolute top-0 right-0 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none"
@@ -250,13 +357,18 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>
 
-      {/* Subtle Scroll Indicator */}
-      <div className="relative z-10 w-full flex flex-col items-center justify-center pt-8 text-brand-muted/70 hover:text-brand-green transition-colors">
+      {/* Subtle Scroll Indicator with smooth motion */}
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.8 }}
+        className="relative z-20 w-full flex flex-col items-center justify-center pt-8 text-brand-muted/70 hover:text-brand-green transition-colors"
+      >
         <a
           href="#problem"
           className="flex flex-col items-center gap-1.5 focus:outline-none group cursor-pointer"
@@ -265,7 +377,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
           <span className="text-[11px] font-mono tracking-widest uppercase">The Digital Challenge</span>
           <ChevronDown className="w-4 h-4 animate-bounce group-hover:text-brand-green" />
         </a>
-      </div>
+      </motion.div>
     </section>
   );
 };
