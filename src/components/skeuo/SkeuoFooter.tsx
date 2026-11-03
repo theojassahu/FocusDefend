@@ -40,6 +40,9 @@ export const SkeuoFooter: React.FC = () => {
             <a href="#how-it-works" className="text-sm text-gray-300 hover:text-white transition-colors">
               How It Works
             </a>
+            <a href="#parents" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Parent Controls
+            </a>
             <a href="#pricing" className="text-sm text-gray-300 hover:text-white transition-colors">
               Pricing & Plans
             </a>

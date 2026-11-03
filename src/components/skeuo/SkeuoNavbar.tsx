@@ -36,6 +36,7 @@ export const SkeuoNavbar: React.FC = () => {
         <div className="hidden md:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-gray-300">
           <a href="#" className="hover:text-white transition-colors">Home</a>
           <a href="#how-it-works" className="hover:text-white transition-colors">How it works</a>
+          <a href="#parents" className="hover:text-white transition-colors">Parents</a>
           <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
           <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
         </div>

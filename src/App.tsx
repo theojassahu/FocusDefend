@@ -6,6 +6,7 @@ import { SkeuoNavbar } from './components/skeuo/SkeuoNavbar';
 import { Phone3DScroll } from './components/skeuo/Phone3DScroll';
 import { HeroSkeuo } from './components/skeuo/HeroSkeuo';
 import { ScrollScenes } from './components/skeuo/ScrollScenes';
+import { ParentControlsSection } from './components/skeuo/ParentControlsSection';
 import { PricingSection } from './components/skeuo/PricingSection';
 import { FAQSection } from './components/skeuo/FAQSection';
 import { SkeuoFooter } from './components/skeuo/SkeuoFooter';
@@ -54,6 +55,7 @@ export default function App() {
       </div>
 
       <div className="relative z-20 bg-[#070a14] border-t border-[#1c2438] shadow-[0_-20px_50px_rgba(0,0,0,0.85)] transform-gpu will-change-transform">
+        <ParentControlsSection />
         <PricingSection />
         <FAQSection />
       </div>

@@ -10,15 +10,17 @@ export const HeroSkeuo: React.FC = () => {
       <div className="z-10 max-w-2xl pointer-events-auto p-7 sm:p-10 rounded-[32px] skeuo-card border border-[#2a3854]">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full skeuo-pill text-xs font-mono uppercase tracking-widest text-indigo-300 mb-5">
           <span className="w-2 h-2 rounded-full skeuo-led-green animate-pulse" />
-          Native Android Architecture
+          LEARN → EARN → UNLOCK
         </div>
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-5 text-white leading-[1.08]">
-          Where Learning
+          YOUR FOCUS.
           <br />
-          Unlocks Freedom.
+          <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-white bg-clip-text text-transparent">
+            YOUR FUTURE.
+          </span>
         </h1>
         <p className="text-base sm:text-lg text-brand-dark-text-secondary mb-8 max-w-lg leading-relaxed">
-          The only parental control platform where students earn access to their favorite apps by completing educational curriculum challenges.
+          Technology should help students grow, not distract them from their potential. FocusDefend transforms digital habits through intelligent app restrictions, learning-based rewards, and AI-powered digital wellbeing.
         </p>
         <div className="flex flex-wrap items-center gap-3.5 sm:gap-4">
           <a
