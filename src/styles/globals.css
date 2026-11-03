@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-midnight: #071426;
+    --color-deep: #0B1B32;
+    --color-surface: #10233B;
+    --color-green: #39D98A;
+    --color-emerald: #20B978;
+    --color-mint: #A7F3D0;
+    --color-border: rgba(255, 255, 255, 0.10);
+  }
+
+  html {
+    color-scheme: dark;
+    background-color: #071426;
+  }
+
+  body {
+    background-color: #071426;
+    color: #FFFFFF;
+    overflow-x: hidden;
+  }
+
+  /* Accessible focus indicators */
+  *:focus-visible {
+    outline: 2px solid #39D98A;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #071426;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e3352;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #20B978;
+}
+
+/* Reduced motion adjustments */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Glass and subtle card styles matching the design guidelines */
+.glass-panel {
+  background: rgba(16, 35, 59, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(22, 46, 77, 0.85);
+  border-color: rgba(57, 217, 138, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 25px rgba(57, 217, 138, 0.15);
+}
+
+.radial-glow-hero {
+  background: radial-gradient(circle at 50% 30%, rgba(57, 217, 138, 0.12) 0%, rgba(32, 185, 120, 0.04) 45%, transparent 70%);
+}
+
+.radial-glow-green {
+  background: radial-gradient(circle, rgba(57, 217, 138, 0.15) 0%, transparent 70%);
+}
+
+.radial-glow-indigo {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+}
